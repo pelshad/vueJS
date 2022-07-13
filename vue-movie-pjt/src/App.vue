@@ -1,12 +1,7 @@
-<template><!--HTML 문법을 사용-->
+<template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/Intro">Intro</router-link> |
-    <router-link to="/DataBindingList">Data</router-link> |
-    <router-link to="/Rendering">Rendering</router-link> |
-    <router-link to="/EventClick">EventClick</router-link>
-
+    <router-link to="/about">About</router-link>
   </nav>
   <router-view/>
 </template>
