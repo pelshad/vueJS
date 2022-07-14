@@ -4,6 +4,7 @@
         <div>
             <input type="date" v-model="selectedDate">
             <button @click="search">검색</button>
+            <button @click="test">test</button>
         </div>
         <rank-table :list="list"/>
 </div>
@@ -33,11 +34,13 @@ export default {
             this.list = data.boxOfficeResult.dailyBoxOfficeList;
         }
     },
-    created(){
-        const d = new Date();
-        d.setDate(d.getDate() - 1);
-        this.selectedDate = this.getOnlyDateStr(d);
-    }
+        created(){
+            const d = new Date();
+            d.setDate(d.getDate() - 1);
+            this.selectedDate = this.getOnlyDateStr(d);
+    },
+
+    
 }
 </script>
 

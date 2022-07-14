@@ -24,7 +24,10 @@ export default {
         RankRow
     },
     props:{
-        list: Array //list는 tr의 list, :는 타입을 입력( 지금은 Array )
+        list: Array, //list는 tr의 list, :는 타입을 입력( 지금은 Array ),
+    },
+    mothods:{
+        
     }
 }
 </script>

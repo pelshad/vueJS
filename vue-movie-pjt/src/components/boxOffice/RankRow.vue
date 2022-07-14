@@ -1,7 +1,7 @@
 <template>
     <tr>
         <td>{{items.rank}}</td>
-        <td @click="getInfo">{{items.movieNm}}</td>
+        <td @click="getInfoNum">{{items.movieNm}}</td>
         <td v-if="items.openDt !== ' '">{{items.openDt}}, {{getDate}}요일</td>
         <td v-else></td>
         <td>{{getaudiAcc}}</td>
@@ -35,8 +35,15 @@ export default {
             const DOW = weeklist[new Date(num).getDay()];
             return DOW;
         },
-        getInfo(num){
-            console.log(num);
+        getInfoNum(){
+            const movieCd = this.items.movieCd;
+            this.getData(movieCd);
+        },
+        //영화정보 불러오기
+        async getData(movieCd){
+            const infodata = await this.getboxOfficeByInfo(movieCd);
+            this.infolist = infodata.movieInfoResult.movieInfo;
+            //console.log(this.infolist);
         }
 
     }

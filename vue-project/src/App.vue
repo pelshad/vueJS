@@ -32,7 +32,6 @@ export default {
         modModalShow: false
       }
     },
-
   methods: {
     addTodo(todoItem){
       /*localStorage.setItem(todoItem, todoItem);*/
