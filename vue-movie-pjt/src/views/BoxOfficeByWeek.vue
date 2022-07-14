@@ -1,39 +1,28 @@
 <template>
     <div>
-        <h1>boxOfficeByWeek</h1>
+        <h1>{{title}}</h1>
         <div>
             <input type="date" v-model="selectedDate">
             <button @click="search">검색</button>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>순위</th>
-                    <th>제목</th>
-                    <th>개봉일</th>
-                    <th>누적관객수</th>
-                    <th>누적매출액</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item) in list" :key="item.movieCd">
-                    <td>{{item.rank}}</td>
-                    <td>{{item.movieNm}}</td>
-                    <td>{{item.openDt}}</td>
-                    <td>{{item.audiAcc}}</td>
-                    <td>{{item.salesAcc}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <rank-table :list="list"/> <!--v-vind list를 (return에 있는) list로 바인딩-->
 </div>
 </template>
 
 <script>
+//RankTable을 사용하기 위해 Import
+import RankTable from '../components/boxOffice/RankTable.vue'; 
+
 export default {
+    components:{ //import한 RankTable을 사용
+        RankTable
+    },
     data(){
         return {
+            title:'Weekly BoxOffice',
             selectedDate:``,
-            list:[]
+            list:[],
+            weekGb:0
         }
     },
     methods:{

@@ -6,7 +6,8 @@ export default {
             key: '590b052e12ed1ab2a7bba684f594a247',
             baseUrl: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/',
             boxOfficeByDay : 'boxoffice/searchDailyBoxOfficeList.json',
-            boxOfficeByWeek : 'boxoffice/searchWeeklyBoxOfficeList.json'
+            boxOfficeByWeek : 'boxoffice/searchWeeklyBoxOfficeList.json',
+            
         }
     },
     methods:{
@@ -27,14 +28,17 @@ export default {
             const url = this.baseUrl + this.boxOfficeByDay;
             return await this.$api(url, parameter);
         },
-        async getBoxOfficeByWeek(targetDt){
+        async getBoxOfficeByWeek(targetDt, weekGb){
             const parameter ={
                 key: this.key,
-                targetDt
+                targetDt,
+                weekGb
+                //api 기준 주간/주말/주중을 선택 입력,0:주간 1:주말 2:주중
             }
             const url = this.baseUrl + this.boxOfficeByWeek;
             return await this.$api(url, parameter);
         },
+        
         getOnlyDateStr(date){
             return date.toISOString().split('T')[0];
         },
