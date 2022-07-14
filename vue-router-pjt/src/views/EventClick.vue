@@ -1,10 +1,12 @@
 <template>
     <div>
+        <!--클릭할때마다 +1-->
         <div>
             <h1>EventClick</h1>
             <button type="button" @click="increaseCnt(); printConsole()">Add 1</button>
             <p> the counter is : {{cnt}} </p>
         </div>
+        <!-- -->
         <div>
             <select v-model="selectedValue" @change="chageSelect">
                 <option>서울</option>
@@ -13,6 +15,7 @@
                 <option>제주</option>
             </select>
         </div>
+        <!-- -->
         <div>
             {{txtVal}}
             <input type="txtVal" v-model="txtVal" @keyup.enter="changeTxtVal">

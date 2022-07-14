@@ -65,7 +65,7 @@
     </div>
 </template>
 <style>
-    .container{width: 100%; height:200px;}
+    .container{width: 100%; height:50px;}
     .active{ background-color: rgb(225, 255, 200); font-weight: bold;}
     .text-red{ color: rgb(255, 106, 106);}
     .active2{ background-color: rgb(200, 201, 255); font-weight: bold }

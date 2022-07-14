@@ -40,4 +40,7 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+table{ border:1px solid rgb(70,70,70); border-collapse: collapse; margin:0 auto;}
+td, th{ border:1px solid rgb(70,70,70); padding:10px }
 </style>
