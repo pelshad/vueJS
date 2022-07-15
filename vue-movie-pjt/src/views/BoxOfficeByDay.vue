@@ -7,7 +7,9 @@
             <button @click="test">test</button>
         </div>
         <rank-table :list="list"/>
-</div>
+        
+    </div>
+
 </template>
 
 <script>

@@ -7,10 +7,18 @@
         <td>{{getaudiAcc}}</td>
         <td>{{getsalesAcc}}</td>
     </tr>
+    <infoModal :show="infoModalShow" @close="infoModalShow" :header="showModal"> </infoModal>
 </template>
 
 <script>
+import infoModal from '../common/infoModal.vue';
 export default {
+    data(){
+        return{
+            infoModalShow:false,
+            
+        }
+    },
     props:{
         items: Object
     },
@@ -23,7 +31,8 @@ export default {
         },
         getDate(){
             return this.setDay(this.items.openDt);
-        }
+        },
+        showModal(){return this.getData(this.movieCd)}
     },
     methods:{
         numberComma(num) {
@@ -43,10 +52,21 @@ export default {
         async getData(movieCd){
             const infodata = await this.getboxOfficeByInfo(movieCd);
             this.infolist = infodata.movieInfoResult.movieInfo;
-            //console.log(this.infolist);
+            
+            const movieinfo = this.infolist;
+            return movieinfo;
+        },
+      
+        close(){
+            this.infoModalShow = !this.infoModalShow;
         }
+        
 
+    },
+    components:{
+        infoModal
     }
+    
 }
 </script>
 
