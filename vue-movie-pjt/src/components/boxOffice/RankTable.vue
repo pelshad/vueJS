@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <rank-row :items="item" v-for="(item) in list" :key="item.movieCd" />
+                <rank-row :items="item" :Blist="Blist" v-for="(item) in list" :key="item.movieCd"  />
             </tbody>
         </table>
 </template>

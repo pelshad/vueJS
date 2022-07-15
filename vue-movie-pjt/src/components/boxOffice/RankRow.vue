@@ -15,8 +15,7 @@ import infoModal from '../common/infoModal.vue';
 export default {
     data(){
         return{
-            infoModalShow:false,
-            
+            infoModalShow:false
         }
     },
     props:{
@@ -39,7 +38,6 @@ export default {
             return String(num).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
         setDay(num){
-            console.log(num);
             const weeklist = ['일', '월', '화', '수', '목', '금', '토'];
             const DOW = weeklist[new Date(num).getDay()];
             return DOW;
@@ -52,7 +50,6 @@ export default {
         async getData(movieCd){
             const infodata = await this.getboxOfficeByInfo(movieCd);
             this.infolist = infodata.movieInfoResult.movieInfo;
-            
             const movieinfo = this.infolist;
             return movieinfo;
         },

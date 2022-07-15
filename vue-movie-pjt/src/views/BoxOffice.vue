@@ -5,7 +5,7 @@
             <input type="date" v-model="selectedDate">
             <button @click="search">검색</button>
         </div>
-        <rank-table :list="list"/> <!--v-vind list를 (return에 있는) list로 바인딩-->
+        <rank-table :list="list" :Blist="Blist" /> <!--v-vind list를 (return에 있는) list로 바인딩-->
     </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
             title:'',
             selectedDate:'',
             list:[],
+            Blist:[],
             weekGb:0,
             pathName: ''
         }
@@ -29,17 +30,27 @@ export default {
     methods:{
         search(){
             const targetDt = this.selectedDate.replaceAll('-','');
-            this.getData(targetDt);
+
+            const targetBDt = this.selectedBDate.replaceAll('-','');
+            this.getData(targetDt, targetBDt);
         },
-        async getData(targetDt){
+        async getData(targetDt, targetBDt){
             switch(this.patName){
             case 'boxOfficeByDay':
                 this.list = (await this.getBoxOfficeByDay(targetDt)).
                             boxOfficeResult.dailyBoxOfficeList;
+
+                this.Blist = (await this.getBoxOfficeByDay(targetBDt)).
+                            boxOfficeResult.dailyBoxOfficeList;
+
                 break;
             case 'boxOfficeByWeek':
                 this.list = (await this.getBoxOfficeByWeek(targetDt)).
                             boxOfficeResult.weeklyBoxOfficeList;
+
+                this.Blist = (await this.getBoxOfficeByWeek(targetDt)).
+                            boxOfficeResult.weeklyBoxOfficeList;
+                            
                 break;
             }
         },
@@ -49,6 +60,10 @@ export default {
         const d = new Date();
         d.setDate(d.getDate() - 1);
         this.selectedDate = this.getOnlyDateStr(d);
+
+        const b = new Date();
+        d.setDate(b.getDate() - 2);
+        this.selectedBDate = this.getOnlyDateStr(b);
     },
 
     updated(){
