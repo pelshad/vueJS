@@ -1,9 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/storeAccess">스토어 접근</router-link> |
-    <router-link to="/storeAccess2">스토어 접근2</router-link>
-
+    <router-link to="/kakaologin">카카오 로그인</router-link>
   </nav>
   <router-view/>
 </template>
