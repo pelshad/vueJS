@@ -1,9 +1,7 @@
 <template>
-<<<<<<< HEAD
   <main class="mt-3">
     <div class="container">
       <h2 class="text-center">제품등록</h2>
-      
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품명</label>
         <div class="col-md-9">
@@ -183,18 +181,6 @@ export default {
   }
 }
 </script>
-<style>
-=======
-    <h1>ProductCreate</h1>
-</template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style>
-
->>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
 </style>
