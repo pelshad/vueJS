@@ -83,12 +83,12 @@ export default {
             this.$store.commit('user', params);
         },
         KakaoLogout() {
-            window.Kakao.Auth.logout(async res =>{
-                conosle.log(res);
+            /*window.Kakao.Auth.logout(async res =>{
+                console.log(res);
                 this.$store.commit('user',{});
                 this.$router.push({path:'/'}); //라우터 주소 이동(안해도됨)
                 await this.$api('/user/logout');
-            })
+            }); 내 사이트에서만 로그아웃, 다시 로그인시 아이디 비번 입력없이 로그인됨*/ 
         }
 }
 }
