@@ -1,6 +1,10 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<<<<<<< HEAD
         <div class="container-fluid">
+=======
+        <div class="container-fluid ">
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
             <a class="navbar-brand" href="#">Soldout</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
@@ -77,18 +81,31 @@ export default {
             });
         },
         async login(params){
+<<<<<<< HEAD
             const data = await this.$post('/user/signup', params);
+=======
+            const data = await this.$api('/user/signup', params);
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
             console.log('data : ' + data.result);
             params.iuser = data.result;
             this.$store.commit('user', params);
         },
         KakaoLogout() {
+<<<<<<< HEAD
             window.Kakao.Auth.logout(async res =>{
                 console.log(res);
                 this.$store.commit('user',{});
                 this.$router.push({path:'/'}); //라우터 주소 이동(안해도됨)
                 await this.$post('/user/logout');
             }); //내 사이트에서만 로그아웃, 다시 로그인시 아이디 비번 입력없이 로그인됨
+=======
+            /*window.Kakao.Auth.logout(async res =>{
+                console.log(res);
+                this.$store.commit('user',{});
+                this.$router.push({path:'/'}); //라우터 주소 이동(안해도됨)
+                await this.$api('/user/logout');
+            }); 내 사이트에서만 로그아웃, 다시 로그인시 아이디 비번 입력없이 로그인됨*/ 
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
         }
 }
 }

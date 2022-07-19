@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <main class="mt-3">
         <div class="container">
             <h2 class="text-center">제품 사진 등록</h2>
@@ -78,10 +79,14 @@
 
         </div>
     </main>
+=======
+    <h1>ImageInsert</h1>
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
 </template>
 
 <script>
 export default {
+<<<<<<< HEAD
     data(){
         return{
             productId:0,
@@ -101,6 +106,9 @@ export default {
             console.log(productDetail);
         }
     }
+=======
+
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
 }
 </script>
 

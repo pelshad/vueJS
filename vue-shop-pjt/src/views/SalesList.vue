@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <main class="mt-3">
         <div class="container">
             <div class="float-end mb-1">
@@ -38,10 +39,14 @@
             </tbody>
         </table>
     </main>
+=======
+    <h1>SalesList</h1>
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
 </template>
 
 <script>
 export default {
+<<<<<<< HEAD
 data() {
     return {
         productList:[]
@@ -56,9 +61,16 @@ data() {
         this.productList = productList2
         }
     }
+=======
+
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
 }
 </script>
 
 <style>
+<<<<<<< HEAD
     i{color:white};
+=======
+
+>>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
 </style>
