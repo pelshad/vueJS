@@ -1,12 +1,20 @@
 import axios from 'axios';
 
-export default{
-    methods:{
-        async $api(url, param){
+export default {
+    methods: {
+        async $post(url, param) {
             return (await axios({
                 method: 'post',
                 url,
                 data: param
+            }).catch(e => {
+                console.error(e);
+            })).data;
+        },
+        //productCreate methods통신에서 사용
+        async $get(url, param) {
+            return (await axios.get(url, {
+                params: param
             }).catch(e => {
                 console.error(e);
             })).data;
@@ -19,6 +27,6 @@ export default{
                 }
                 fr.readAsDataURL(file);
             });
-        }
+        },
     }
 }
