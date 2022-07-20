@@ -13,5 +13,4 @@ createApp(App)
 .use(VueSweetalert2)
 .mount('#app')
 
-
-window.Kakao.init('e05537990371be03074bf7613aa12b32');
+window.Kakao.init('548c540433bbbcdc69a20239e4be97ff');

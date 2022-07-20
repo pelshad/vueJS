@@ -1,54 +1,56 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<<<<<<< HEAD
-        <div class="container-fluid">
-=======
-        <div class="container-fluid ">
->>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
-            <a class="navbar-brand" href="#">Soldout</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-items">
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/">HOME</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link active" to="/">제품리스트</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/detail">제품상세페이지</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/sales">제품등록</router-link>
-                </li>
-                <li v-if="user.email === undefined">
-                    <button class="btn btn-danger" type="button" @click="KakaoLogin">로그인</button>
-                </li>
-                <li v-else>
-                    <button class="btn btn-danger" type="button" @click="KakaoLogout">로그아웃</button>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submut" >Search</button>
-            </form>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="#">Soldout</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent" 
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-items">
+                  <li class="nav-item">
+                      <router-link class="nav-link" to="/">Home</router-link>
+                  </li>
+                  <li class="nav-item">
+                      <router-link class="nav-link active" to="/">제품리스트</router-link>
+                  </li>
+                  <li class="nav-item">
+                      <router-link class="nav-link" to="/detail">제품상세페이지</router-link>
+                  </li>
+                  <li class="nav-item">
+                      <router-link class="nav-link" to="/sales">제품등록</router-link>
+                  </li>
+                  <li v-if="user.email === undefined">
+                      <button class="btn btn-danger" type="button" @click="kakaoLogin">로그인</button>
+                  </li>
+                  <li v-else>
+                      <button class="btn btn-danger" type="button" @click="kakaoLogout">로그아웃</button>
+                  </li>
+              </ul>
+              <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" 
+                  aria-label="Search">
+                  <button class="btn btn-outline-success text-white" type="submit" 
+                  style="border-color:white;">Search</button>
+              </form>
+          </div>
+      </div>
+  </nav>
 </template>
 
 <script>
 export default {
-    name: 'Header',
+    name: 'header',
     computed: {
-        user(){
+        user() {
             return this.$store.state.user;
         }
     },
-    methods:{
-        KakaoLogin() {
+    methods: {
+        kakaoLogin() {
             window.Kakao.Auth.login({
                 scope: 'profile_nickname, profile_image, account_email',
                 success: this.getProfile,
@@ -57,13 +59,12 @@ export default {
                 }
             });
         },
-        getProfile(authObj){
+        async getProfile(authObj) {
             console.log(authObj);
             window.Kakao.API.request({
                 url: '/v2/user/me',
-                success: async res => {
-                    const acc = res.kakao_account;
-                    console.log(acc);
+                success: async res => {                    
+                    const acc = res.kakao_account;                    
                     const params = {
                         social_type: 1,
                         email: acc.email,
@@ -72,46 +73,30 @@ export default {
                         thumb_img: acc.profile.thumbnail_image_url
                     }
                     console.log(params);
-                    this.login(params);
-                    
+                    await this.login(params);                 
                 },
                 fail: e => {
                     console.error(e);
                 }
             });
         },
-        async login(params){
-<<<<<<< HEAD
+        async login(params) {
             const data = await this.$post('/user/signup', params);
-=======
-            const data = await this.$api('/user/signup', params);
->>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
-            console.log('data : ' + data.result);
             params.iuser = data.result;
             this.$store.commit('user', params);
         },
-        KakaoLogout() {
-<<<<<<< HEAD
-            window.Kakao.Auth.logout(async res =>{
+        kakaoLogout() {
+            window.Kakao.Auth.logout(async res => {
                 console.log(res);
-                this.$store.commit('user',{});
-                this.$router.push({path:'/'}); //라우터 주소 이동(안해도됨)
+                this.$store.commit('user', {});
+                this.$router.push({path:'/'}); //라우터 주소 이동. (option 사항)
                 await this.$post('/user/logout');
-            }); //내 사이트에서만 로그아웃, 다시 로그인시 아이디 비번 입력없이 로그인됨
-=======
-            /*window.Kakao.Auth.logout(async res =>{
-                console.log(res);
-                this.$store.commit('user',{});
-                this.$router.push({path:'/'}); //라우터 주소 이동(안해도됨)
-                await this.$api('/user/logout');
-            }); 내 사이트에서만 로그아웃, 다시 로그인시 아이디 비번 입력없이 로그인됨*/ 
->>>>>>> 082fbdad9ba574456689a2b7fa13163662a2a2ae
+            });
         }
-}
+    }
 }
 </script>
 
 <style>
-    .nav-items{ flex-direction: row; justify-content: space-evenly; grid-template-rows:minmax(200px, 1fr);};
-    .nav-items li{width: 200px;}
+.nav-items{ flex-direction: row; justify-content: space-evenly};
 </style>

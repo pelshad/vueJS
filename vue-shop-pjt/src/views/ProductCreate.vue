@@ -2,12 +2,14 @@
   <main class="mt-3">
     <div class="container">
       <h2 class="text-center">제품등록</h2>
+      
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품명</label>
         <div class="col-md-9">
           <input type="text" class="form-control" ref="product_name" v-model="product.product_name">
         </div>
       </div>
+
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품가격</label>
         <div class="col-md-9">
@@ -17,6 +19,7 @@
           </div>
         </div>
       </div>
+
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">배송비</label>
         <div class="col-md-9">
@@ -26,6 +29,7 @@
           </div>
         </div>
       </div>
+
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">추가배송비(도서산간)</label>
         <div class="col-md-9">
@@ -35,6 +39,7 @@
           </div>
         </div>
       </div>
+
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">카테고리</label>
         <div class="col-md-9">
@@ -43,9 +48,6 @@
             <div class="col-auto">              
               <select class="form-select" v-model="cate1" @change="changeCate1">
                 <option :key="name" v-for="(value, name) of categoryObj">{{ name }}</option>
-                <!-- value:cate2의 배열(객체), name: cate2의 key(문자열)-->
-                <!-- 해당 option에선 value값이 필요 없지만 key(name)값을 가져오기 위해 사용, v-for="name of"로 적으면 value값을 가져옴-->
-                <!-- 순서는 value, key 고정 -->
               </select>
             </div>
             
@@ -60,10 +62,11 @@
                 <option :value="cate.id" :key="cate.id" v-for="cate in categoryObj[cate1][cate2]">{{ cate.value }}</option>
               </select>
             </div>
-
+            
           </div>
         </div>
       </div>
+
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">태그</label>
         <div class="col-md-9">
@@ -80,6 +83,7 @@
           </div>
         </div>
       </div>
+
       <div class="mb-3 row">
         <div class="col-6 d-grid p-1">
           <button type="button" class="btn btn-lg btn-dark" @click="goToList">취소</button>
@@ -88,30 +92,32 @@
           <button type="button" class="btn btn-lg btn-danger" @click="productInsert">저장</button>
         </div>
       </div>
+
     </div>
   </main>
 </template>
+
 <script>
 export default {
   data() {
     return {
       product: {
-        product_name: '',
-        product_price: 0,
-        delivery_price: 2500,
-        add_delivery_price: 0,
-        tags: '',
-        outbound_days: 0,
-        category_id: '',
+        product_name: '제품abc',
+        product_price: 10,
+        delivery_price: 20,
+        add_delivery_price: 30,
+        tags: 'taggggg',
+        outbound_days: 4,
+        category_id: '1',
         seller_id: 1
-      },
+      },      
       categoryObj: {},    
       cate1: '',
       cate2: '',      
     };
   },
   created() {
-    this.getCategoryList();//this < data에 있는 걸 사용
+    this.getCategoryList();
   },
   methods: {
     async getCategoryList() {
@@ -121,20 +127,24 @@ export default {
       let cate2 = '';      
       categoryList.forEach(item => {
         if(item.cate1 !== cate1) {
-          cate1 = item.cate1; //문자열
+          cate1 = item.cate1;
           this.categoryObj[cate1] = {};
           cate2 = '';          
         }
+
         if(item.cate2 !== cate2) {
           cate2 = item.cate2;
           this.categoryObj[cate1][cate2] = [];
-        }
+        }        
+        
         const obj = {
           id: item.id,
           value: item.cate3
         }
         this.categoryObj[cate1][cate2].push(obj);
-      });      
+      });
+      
+      console.log(this.categoryObj);
     },
     changeCate1() {
       this.cate2 = '';
@@ -148,21 +158,26 @@ export default {
         this.$refs.product_name.focus();
         return this.$swal('제품명은 필수 입력값입니다.');
       }
+
       if(this.product.product_price === '' || this.product.product_price === 0) {
         this.$refs.product_price.focus();
         return this.$swal('제품 가격을 입력하세요.');
       }
+
       if(this.product.delivery_price === '' || this.product.delivery_price === 0) {
         this.$refs.delivery_price.focus();
         return this.$swal('배송료를 입력하세요.');
       }
+
       if(this.product.category_id === '') {
         return this.$swal('카테고리를 선택해주세요.');
       }
+
       if(this.product.outbound_days === '' || this.product.outbound_days === 0) {
         this.$refs.outbound_days.focus();
         return this.$swal('출고일을 입력하세요.');
       }
+
       this.$swal.fire({
         title: '정말 등록 하시겠습니까?',
         showCancelButton: true, 
@@ -170,10 +185,12 @@ export default {
         cancelButtonText: '취소'
       }).then(async result => {
         if(result.isConfirmed) {
-          const res = this.$post('/api/productInsert', this.product);
+          const res = await this.$post('/api/productInsert', this.product);
           console.log(res);
-          this.$swal.fire('저장되었습니다.', '', 'success');
-          this.$router.push( {path: '/sales'} );
+          if(res.result > 0) {
+            this.$swal.fire('저장되었습니다.', '', 'success');
+            this.$router.push( {path: '/sales'} );
+          }
         }
       });
       ;
@@ -183,4 +200,5 @@ export default {
 </script>
 
 <style>
+
 </style>
