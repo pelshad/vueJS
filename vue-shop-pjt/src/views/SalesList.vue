@@ -31,11 +31,11 @@
                 <button type="button" class="btn btn-info me-1">사진등록</button>
               </router-link>
               -->
-              <button type="button" class="btn btn-info me-1" @click="goToImageInsert(idx)">사진등록</button>
+              <button type="button" class="btn btn-info me-1" @click="goToImageInsert(idx)"><i class="fa-solid fa-cat"></i></button>
               <router-link class="nav-link" :to="{ path: '/update', query: {product_id: product.id} }">
-                <button type="button" class="btn btn-warning me-1">수정</button>
+                <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-paw"></i></button>
               </router-link>              
-              <button type="button" class="btn btn-danger">삭제</button>
+              <button type="button" class="btn btn-danger"><i class="fa-solid fa-paw"></i></button>
             </td>
           </tr>
         </tbody>
@@ -68,5 +68,5 @@ export default {
 </script>
 
 <style>
-
+i{color:white;}
 </style>

@@ -20,6 +20,15 @@ export default {
             })).data;
         },
 
+        async $delete(url, param) {
+            return (await axios(url, {
+                method: 'DELETE',
+                params: param
+            }).catch(e => {
+                console.error(e);
+            })).data;
+        },
+
         $base64(file) {
             return new Promise(resolve => {
                 const fr = new FileReader();
