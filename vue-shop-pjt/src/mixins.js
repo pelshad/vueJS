@@ -6,7 +6,7 @@ export default {
             return (await axios({
                 method: 'post',
                 url,
-                data: param
+                data: param  //post 방식으로 보낼때 사용
             }).catch(e => {
                 console.error(e);
             })).data;
@@ -14,7 +14,7 @@ export default {
 
         async $get(url, param) {
             return (await axios.get(url, {
-                params: param
+                params: param //get 방식으로 보낼때 사용
             }).catch(e => {
                 console.error(e);
             })).data;
