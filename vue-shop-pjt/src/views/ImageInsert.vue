@@ -123,12 +123,21 @@ export default {
       const { error } = await this.$post(`/api/upload/${this.productDetail.id}/${type}`, formData);
       console.log(error);
     },
-
-    async deleteImage(id, product_id, type, path){
-      const imagenm = await this.$delete(`/api/productImageDelete/${id}/${product_id}/${type}/${path}`);
-      console.log(imagenm);
-    }
-
+    deleteImage(id, product_id, type, path) {
+            this.$swal.fire({
+                title: '정말 삭제 하시겠습니까?',
+                showCancelButton: true,
+                confirmButtonText: `삭제`,
+                cancelButtonText: `취소`
+            }).then(async (result) => {
+                if(result.isConfirmed) {
+                    const imagenm = await this.$delete(`/api/productImageDelete/${id}/${product_id}/${type}/${path}`);
+                    console.log(imagenm)
+                    this.getProductImage();
+                    this.$swal.fire('삭제되었습니다!', '', 'success');
+                }
+            }) 
+        }
     
   },
 }
