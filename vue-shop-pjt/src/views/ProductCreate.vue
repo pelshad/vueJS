@@ -6,7 +6,7 @@
       <div class="mb-3 row">
         <label class="col-md-3 col-form-label">제품명</label>
         <div class="col-md-9">
-          <input type="text" class="form-control" ref="product_name" v-model="product.product_name">
+          <input type="text" class="form-control" ref="product_name" v-model="product.product_name" placeholder="제품명을 적어주세요.">
         </div>
       </div>
 
@@ -102,12 +102,12 @@ export default {
   data() {
     return {
       product: {
-        product_name: '제품abc',
-        product_price: 10,
-        delivery_price: 20,
-        add_delivery_price: 30,
-        tags: 'taggggg',
-        outbound_days: 4,
+        product_name: '',
+        product_price: 0,
+        delivery_price: 2500,
+        add_delivery_price: 0,
+        tags: '',
+        outbound_days: 2,
         category_id: '1',
         seller_id: 1
       },      

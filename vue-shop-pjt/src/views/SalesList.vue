@@ -10,7 +10,8 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th></th>
+            <th>
+            </th>
             <th>제품명</th>
             <th>제품가격</th>
             <th>배송비</th>
@@ -20,7 +21,7 @@
         </thead>
         <tbody>
           <tr v-for="(product, idx) in productList" :key="product.id">
-            <td></td>
+            <td><img v-if="product.path !== null" :src="`/static/img/${product.id}/1/${product.path}`" style="height:120px; width:auto;"></td>
             <td>{{ product.product_name }}</td>
             <td>{{ product.product_price }}</td>
             <td>{{ product.delivery_price }}</td>
@@ -35,7 +36,7 @@
               <router-link class="nav-link" :to="{ path: '/update', query: {product_id: product.id} }">
                 <button type="button" class="btn btn-warning me-1"><i class="fa-solid fa-paw"></i></button>
               </router-link>              
-              <button type="button" class="btn btn-danger"><i class="fa-solid fa-paw"></i></button>
+              <button type="button" class="btn btn-danger" @click="deleteProduct(product.id)"><i class="fa-solid fa-paw"></i></button>
             </td>
           </tr>
         </tbody>
@@ -59,10 +60,15 @@ export default {
     goToImageInsert(idx) {
       this.$store.commit('sallerSelectedProduct', this.productList[idx]);
       this.$router.push( {path: '/image_insert'} );
+    },
+    async deleteProduct(productID){
+      const delPro = await this.$delete(`api/deleteProduct/${productID}`)
+      console.log(delPro);
     }
   },
   created() {
     this.getProductList();
+
   }
 }
 </script>

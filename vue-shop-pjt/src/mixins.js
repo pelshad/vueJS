@@ -21,8 +21,7 @@ export default {
         },
 
         async $delete(url, param) {
-            return (await axios(url, {
-                method: 'DELETE',
+            return (await axios.delete(url, {
                 params: param
             }).catch(e => {
                 console.error(e);
